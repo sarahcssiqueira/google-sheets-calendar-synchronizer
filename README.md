@@ -10,12 +10,24 @@
 ## Requirements
 
 - Google Account
+- Basic Javascript knowledge
 
 ## Usage
 
-[TO DO]
+- Log in to your Google Account;
+- Create a Spreadsheet;
+- Go to the tab Extensions and the to the Apps Script menu;
+
+![Google Scripts editor](screenshots/access-google-script-editor.png)
+
+- In the Google App Scripts editor copy and paste the code in the [main.js](https://github.com/sarahcssiqueira/google-sheets-calendar-synchronizer/blob/master/main.js) file of this repository;
+- Make sure to replace 'YOUR CALENDAR ID' with the id of the Google Calendar you want to synchronize.
 
 ### Sample Spreadsheet
+
+That's a sample of a [spreadsheet already correctly formatted](https://docs.google.com/spreadsheets/d/1SO8Ealz15EUsJdb51sZYLiMsokyFSk0OQNZXXusKyvU/edit?usp=sharing) to work with the following script.
+
+## Commom errors
 
 [TO DO]
 
@@ -30,5 +42,3 @@
 ## License
 
 This project is licensed under the [MIT](https://github.com/sarahcssiqueira/google-sheets-calendar-synchronizer/blob/master/LICENSE) license.
-
-## Commom errors
