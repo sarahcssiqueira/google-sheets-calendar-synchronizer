@@ -3,44 +3,30 @@
  * @see https://developers.google.com/calendar/api/v3/reference/events/insert
  * @see https://developers.google.com/calendar/api/v3/reference/events/update
  */
-function createUpdateEvent() {
-  /*
-   * Open the Calendar
-   */
-  const calendarId = "yourcalendarID";
+function createorUpdateEvents() {
+  const calendarId = "YOUR CALENDAR ID";
   const sheet = SpreadsheetApp.getActiveSheet();
-
-  /*
-   * Import events data from the spreadsheet
-   */
   const events = sheet.getRange("A2:G1000").getValues();
-
-  /*
-   * Event details for creating event
-   */
-  var event; // Declare event variable outside the loop
+  let event;
 
   for (i = 0; i < events.length; i++) {
-    var shift = events[i];
-    var eventID = shift[0];
-    var eventsubject = shift[1];
-    var startTime = shift[2];
-    var endTime = shift[3];
-    var description = shift[4];
-    var color = shift[5];
-    var attendees = shift[7];
+    const shift = events[i];
+    const eventID = shift[0];
+    const eventsubject = shift[1];
+    const startTime = shift[2];
+    const endTime = shift[3];
+    const description = shift[4];
+    const color = shift[5];
 
-    // Check if the variables are defined
     if (
       eventID !== undefined &&
       eventsubject !== undefined &&
       description !== undefined &&
-      // && attendees !== undefined
       color !== undefined &&
       startTime instanceof Date &&
       endTime instanceof Date
     ) {
-      let event = {
+      const event = {
         id: eventID,
         summary: eventsubject,
         description: description,
@@ -55,23 +41,17 @@ function createUpdateEvent() {
         colorId: color,
       };
 
-      /**
-       * Insert or update event
-       **/
       try {
+        let createOrUpdate;
         if (event.id) {
-          // Update an existing event
-          update = Calendar.Events.update(event, calendarId, eventID);
+          createOrUpdate = Calendar.Events.update(event, calendarId, eventID);
         } else {
-          // Insert a new event
-          create = Calendar.Events.insert(event, calendarId);
+          createOrUpdate = Calendar.Events.insert(event, calendarId);
         }
       } catch (e) {
         if (e.message && e.message.indexOf("Not Found") !== -1) {
-          // Handle the "Not Found" error by creating a new event
-          create = Calendar.Events.insert(event, calendarId);
+          createOrUpdate = Calendar.Events.insert(event, calendarId);
         } else {
-          // Handle other errors
           console.error("Error:", e);
         }
       }
@@ -121,7 +101,7 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu("Sync data with Calendar")
     .addItem("Calendar to Sheet", "calendarToSheet")
-    .addItem("Sheet to Calendar", "createUpdateEvent")
+    .addItem("Sheet to Calendar", "createorUpdateEvents")
     .addSeparator()
     .addSubMenu(
       ui.createMenu("About").addItem("Documentation", "documentation")
