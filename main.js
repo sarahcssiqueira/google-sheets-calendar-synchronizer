@@ -99,21 +99,24 @@ function exportCalendarEventsToSheet() {
  */
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
-  ui.createMenu("Sync data with Calendar")
-    .addItem("Calendar to Sheet", "exportCalendarEventsToSheet")
-    .addItem("Sheet to Calendar", "createorUpdateEvents")
+  ui.createMenu("Sync Data with Calendar")
+    .addItem("Export Calendar Events to Sheet", "exportCalendarEventsToSheet")
+    .addItem("Import Data from Sheet to Calendar", "createorUpdateEvents")
     .addSeparator()
     .addSubMenu(
-      ui.createMenu("About").addItem("Documentation", "documentation")
+      ui.createMenu("About").addItem("Documentation", "showDocumentation")
     )
     .addToUi();
 }
 
-/*
- * Display link for info
- */
-function documentation() {
-  SpreadsheetApp.getUi().alert(
-    "For more info go to https://github.com/sarahcssiqueira/google-sheets-calendar-synchronizer"
+function showDocumentation() {
+  var htmlOutput = HtmlService.createHtmlOutput(
+    '<p>For more info, visit <a href="https://github.com/sarahcssiqueira/google-sheets-calendar-synchronizer" target="_blank">this link</a>.'
   );
+  var ui = SpreadsheetApp.getUi();
+  ui.showModalDialog(htmlOutput, "Documentation");
+}
+
+function closeDialog() {
+  google.script.host.close();
 }
