@@ -64,31 +64,31 @@ function createorUpdateEvents() {
  * @see https://developers.google.com/calendar/api/v3/reference/events/insert
  * @see https://developers.google.com/calendar/api/v3/reference/events/update
  */
-function calendarToSheet() {
-  const calendar = CalendarApp.getCalendarById("yourcalendarID");
+function exportCalendarEventsToSheet() {
+  const calendarId = "YOUR CALENDAR ID";
+  const startDate = new Date("2023-01-01");
+  const endDate = new Date("2023-12-31");
+  const calendar = CalendarApp.getCalendarById(calendarId);
   const sheet = SpreadsheetApp.getActiveSheet();
-  const events = calendar.getEvents(
-    new Date("01/01/2023"),
-    new Date("12/31/2023")
-  );
+  const events = calendar.getEvents(startDate, endDate);
   const data = [];
 
-  if (events) {
-    for (i = 0; i < events.length; i++) {
-      var eventID = events[i].getId();
-      var eventPart = eventID.split("@")[0];
+  if (events.length > 0) {
+    for (let i = 0; i < events.length; i++) {
+      const event = events[i];
+      const eventID = event.getId().split("@")[0];
+      const eventTitle = event.getTitle();
+      const startTime = event.getStartTime();
+      const endTime = event.getEndTime();
+      const description = event.getDescription();
+      const color = event.getColor();
 
-      data.push([
-        eventPart,
-        events[i].getTitle(),
-        events[i].getStartTime(),
-        events[i].getEndTime(),
-        events[i].getDescription(),
-        events[i].getColor(),
-      ]);
+      data.push([eventID, eventTitle, startTime, endTime, description, color]);
     }
 
-    sheet.getRange(2, 1, data.length, data[0].length).setValues(data);
+    const numRows = data.length;
+    const numCols = data[0].length;
+    sheet.getRange(2, 1, numRows, numCols).setValues(data);
   } else {
     console.log("No events exist for the specified range");
   }
@@ -100,7 +100,7 @@ function calendarToSheet() {
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu("Sync data with Calendar")
-    .addItem("Calendar to Sheet", "calendarToSheet")
+    .addItem("Calendar to Sheet", "exportCalendarEventsToSheet")
     .addItem("Sheet to Calendar", "createorUpdateEvents")
     .addSeparator()
     .addSubMenu(
