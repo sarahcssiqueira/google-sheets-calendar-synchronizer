@@ -21,7 +21,7 @@
 ![Google Scripts editor](screenshots/access-google-script-editor.png)
 
 - In the Google App Scripts editor copy and paste the code in the [main.js](https://github.com/sarahcssiqueira/google-sheets-calendar-synchronizer/blob/master/main.js) file of this repository;
-- Make sure to replace 'YOUR CALENDAR ID' with the id of the Google Calendar you want to synchronize.
+- Make sure to **replace 'YOUR CALENDAR ID'** with the id of the Google Calendar you want to synchronize.
 
 ### Sample Spreadsheet
 
