@@ -10,13 +10,14 @@
 ## Requirements
 
 - Google Account
-- Basic Javascript knowledge
+- Some JavaScript Knowledge
+- Google Spreadsheets and Google Calendar familiarity
 
 ## Usage
 
 - Log in to your Google Account;
 - Create a Spreadsheet;
-- Go to the tab Extensions and the to the Apps Script menu;
+- Go to the tab Extensions > Apps Script menu;
 
 ![Google Scripts editor](screenshots/access-google-script-editor.png)
 
@@ -27,12 +28,9 @@
 
 That's a sample of a [spreadsheet already correctly formatted](https://docs.google.com/spreadsheets/d/1SO8Ealz15EUsJdb51sZYLiMsokyFSk0OQNZXXusKyvU/edit?usp=sharing) to work with the following script.
 
-## Commom errors
-
-[TO DO]
-
 ## References
 
+- [Syncing a Spreadsheet with Google Calendar using Google Scripts to be (or at least try) more productive ](https://dev.to/sarahcssiqueira/syncing-a-spreadsheet-with-google-calendar-using-google-scripts-to-be-or-at-least-try-more-productive-18cc)
 - [G Suite Pro Tips](https://workspace.google.com/blog/productivity-collaboration/g-suite-pro-tip-how-to-automatically-add-a-schedule-from-google-sheets-into-calendar)
 - [Class Calendar](<https://developers.google.com/apps-script/reference/calendar/calendar?hl=pt-br#createAllDayEvent(String,Date,Object)>)
 - [Google Sheets - Use Apps Script to Create Google Calendar Events Automatically](https://www.youtube.com/watch?v=FxxPq2wXcK4)
